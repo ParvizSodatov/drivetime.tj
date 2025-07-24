@@ -1,37 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📝 Техническое Задание (ТЗ) для проекта drivetime.tj
+📌 Название проекта:
+drivetime.tj — онлайн платформа автосалона для покупки, просмотра и сравнения автомобилей.
 
-## Getting Started
+🎯 Цель проекта:
+Создать удобный веб-сайт, где пользователи могут:
 
-First, run the development server:
+просматривать каталог автомобилей,
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+фильтровать машины по параметрам,
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+смотреть подробную информацию о каждом авто,
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+оставлять заявки на покупку или связываться с автосалоном.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧱 Технологии:
+Next.js + TypeScript
 
-## Learn More
+TailwindCSS или MUI (по выбору)
 
-To learn more about Next.js, take a look at the following resources:
+Zustand или Redux для управления состоянием
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Axios для API-запросов
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+JSON Server для имитации backend на этапе разработки
 
-## Deploy on Vercel
+GitHub для совместной работы
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# drivetime.tj
+📁 Структура проекта:
+css
+Копировать
+Редактировать
+app/
+├─ layout.tsx
+├─ page.tsx
+├─ cars/
+│  └─ page.tsx
+├─ car/[id]/
+│  └─ page.tsx
+├─ contact/
+│  └─ page.tsx
+components/
+├─ CarCard.tsx
+├─ Navbar.tsx
+├─ Footer.tsx
+store/
+├─ useCarStore.ts
+services/
+├─ api.ts
+public/
+├─ images/
