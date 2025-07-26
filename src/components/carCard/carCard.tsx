@@ -29,7 +29,7 @@ const CarCard = () => {
           <Card
             elevation={0}
             sx={{
-              width: '2700px',
+              width: '270px',
               height: '223px',
               borderRadius: 2,
               boxShadow: 'none',
@@ -43,7 +43,7 @@ const CarCard = () => {
 
 
 
-              
+
               sx={{
                 width: '270px',
                 height: '155px',
