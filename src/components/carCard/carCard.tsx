@@ -29,7 +29,7 @@ const CarCard = () => {
           <Card
             elevation={0}
             sx={{
-              width: '250px',
+              width: '2700px',
               height: '223px',
               borderRadius: 2,
               boxShadow: 'none',
@@ -41,8 +41,8 @@ const CarCard = () => {
               image={car.image}
               alt={car.title}
               sx={{
-                width: '250px',
-                height: '141px',
+                width: '270px',
+                height: '155px',
                 objectFit: 'cover',
                 borderRadius: '10px',
               }}
