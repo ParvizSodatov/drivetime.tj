@@ -40,6 +40,10 @@ const CarCard = () => {
               component="img"
               image={car.image}
               alt={car.title}
+
+
+
+              
               sx={{
                 width: '270px',
                 height: '155px',
