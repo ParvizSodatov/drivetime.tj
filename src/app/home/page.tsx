@@ -7,7 +7,7 @@ import CarCard from '@/components/carCard/carCard'
 
 export default function Home() {
   return (
-	<div className='max-w-[1300px] mx-auto px-4 py-8'>
+	<div className='max-w-[1180px] mx-auto px-4 py-8'>
 		 <section
   style={{
     backgroundImage: "url('/parviz/i (1).webp')",
@@ -45,8 +45,8 @@ export default function Home() {
         Featured Used Cars
        </h1>
 
-   <section className='flex justify-around'>
-<CarCard/>
+   <section className='flex jusstify-start gap-15 '>
+{/* <CarCard/> */}
 <CarCard/>
 <CarCard/>
 <CarCard/>
@@ -54,13 +54,12 @@ export default function Home() {
    </section>
 
 
-   
-       <h1 className='text-[50px] py-[30px]'>
-        Explore Rentals
+     <h1 className='text-[50px] py-[30px]'>
+        Featured Used Cars
        </h1>
 
-   <section className='flex justify-around'>
-<CarCard/>
+   <section className='flex jusstify-start gap-15 '>
+{/* <CarCard/> */}
 <CarCard/>
 <CarCard/>
 <CarCard/>
