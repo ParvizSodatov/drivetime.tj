@@ -17,7 +17,7 @@ const fakeCars: Car[] = [
     year: 2018,
     title: 'Sedan',
     description: 'Sedan, 2018, $15,000',
-    image: '/car.png', // Помести car.png в /public
+    image: '/car.png',
   },
 ];
 
@@ -25,37 +25,39 @@ const CarCard = () => {
   return (
     <Grid container spacing={2}>
       {fakeCars.map((car) => (
-        <Grid item xs={12} sm={6} md={4} key={car.id}>
+        <Grid item key={car.id}>
           <Card
             elevation={0}
             sx={{
-              borderRadius: 4,
+              width: '250px',
+              height: '223px',
+              borderRadius: 2,
               boxShadow: 'none',
               overflow: 'hidden',
             }}
           >
             <CardMedia
               component="img"
-              height="200"
               image={car.image}
               alt={car.title}
               sx={{
+                width: '250px',
+                height: '141px',
                 objectFit: 'cover',
-                borderRadius: '16px',
-                width: '100%',
+                borderRadius: '10px',
               }}
             />
-            <CardContent sx={{ px: 1.5, pt: 1.5, pb: 2 }}>
+            <CardContent sx={{ px: 2, pt: 1.5, pb: 2 }}>
               <Typography
                 variant="h6"
                 fontWeight={600}
-                sx={{ fontSize: '18px', mb: 0.5 }}
+                sx={{ fontSize: '18px', lineHeight: '22px', mb: 0.5 }}
               >
                 {car.year} {car.title}
               </Typography>
               <Typography
                 variant="body2"
-                sx={{ color: '#6e7c87', fontSize: '15px' }}
+                sx={{ color: '#6e7c87', fontSize: '15px', lineHeight: '20px' }}
               >
                 {car.description}
               </Typography>
