@@ -1,15 +1,22 @@
-'use client'
-import PartCard from '@/components/partsCard/partCard'
-import { FormControl, InputLabel, MenuItem, Select ,SelectChangeEvent} from '@mui/material'
-import { useState,ChangeEvent } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules'
-import 'swiper/css';
-import 'swiper/css/autoplay';
+"use client";
+
+import PartCard from "@/components/partsCard/partCard";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useState, useEffect } from "react";
+import { usePartsStore } from "@/store/pages/autoparts/autoparts";
+
 export default function ZapchastiPage() {
-  const [make, setMake] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-  const [brand, setBrand] = useState<string>('');
+  const { parts, getParts } = usePartsStore();
+
+  const [make, setMake] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
+  const [brand, setBrand] = useState<string>("");
 
   const handleChangeMake = (e: SelectChangeEvent) => {
     setMake(e.target.value);
@@ -18,61 +25,71 @@ export default function ZapchastiPage() {
   const handleChangeCategory = (e: SelectChangeEvent) => {
     setCategory(e.target.value);
   };
+
   const handleChangeBrand = (e: SelectChangeEvent) => {
     setBrand(e.target.value);
   };
-  return (
-    <div className='max-w-[1180px] mx-auto px-4 py-8'>
-      <h1 className='text-[40px] font-bold mt-[25px]'>Parts & Accessories</h1>
-      <section className='flex items-center gap-4 mt-8'>
-        <FormControl sx={{ width: '120px' }}>
-  <InputLabel id="demo-simple-select-label">Make</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={make}
-    label="Make"
-    onChange={handleChangeMake}
-  >
-    <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>
-  </Select>
-</FormControl>
-        <FormControl sx={{ width: '120px' }} >
-  <InputLabel id="demo-simple-select-label">Category</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={category}
-    label="Category"
-    onChange={handleChangeCategory}
-  >
-    <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>
-  </Select>
-</FormControl>
-        <FormControl sx={{ width: '120px' }}>
-  <InputLabel id="demo-simple-select-label">Brand</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={brand}
-    label="Age"
-    onChange={handleChangeBrand}
-  >
-    <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>
-  </Select>
-</FormControl>
 
+  useEffect(() => {
+    getParts();
+  }, []);
+
+  return (
+    <div className="max-w-[1180px] mx-auto px-4 py-8">
+      <h1 className="text-[40px] font-bold mt-[25px]">Parts & Accessories</h1>
+
+      {/* Фильтры */}
+      <section className="flex items-center gap-4 mt-8">
+        <FormControl sx={{ width: "120px" }}>
+          <InputLabel id="make-select-label">Make</InputLabel>
+          <Select
+            labelId="make-select-label"
+            id="make-select"
+            value={make}
+            label="Make"
+            onChange={handleChangeMake}
+          >
+            <MenuItem value="Toyota">Toyota</MenuItem>
+            <MenuItem value="BMW">BMW</MenuItem>
+            <MenuItem value="Mercedes">Mercedes</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ width: "120px" }}>
+          <InputLabel id="category-select-label">Category</InputLabel>
+          <Select
+            labelId="category-select-label"
+            id="category-select"
+            value={category}
+            label="Category"
+            onChange={handleChangeCategory}
+          >
+            <MenuItem value="Фильтры">Фильтры</MenuItem>
+            <MenuItem value="Электрооборудование">Электрооборудование</MenuItem>
+            <MenuItem value="Тормозная система">Тормозная система</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ width: "120px" }}>
+          <InputLabel id="brand-select-label">Brand</InputLabel>
+          <Select
+            labelId="brand-select-label"
+            id="brand-select"
+            value={brand}
+            label="Brand"
+            onChange={handleChangeBrand}
+          >
+            <MenuItem value="Bosch">Bosch</MenuItem>
+            <MenuItem value="VARTA">VARTA</MenuItem>
+            <MenuItem value="Brembo">Brembo</MenuItem>
+          </Select>
+        </FormControl>
       </section>
-      <section className='flex  gap-2 mt-8 w-full bg-amber-50 justify-around '>
-   
-        
-        <PartCard />
+
+      <section className="flex flex-wrap gap-4 mt-8 w-full  justify-start p-4">
+        {parts.map((part) => (
+          <PartCard key={part.id} part={part} />
+        ))}
       </section>
     </div>
   );
