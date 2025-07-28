@@ -22,7 +22,7 @@ export default function About() {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ maxWidth: "1180px", mt: 4 }}>
+    <Container maxWidth="lg" sx={{ maxWidth: "1180px", mt: 4, height: "500px"}}>
       <Typography variant="h5" fontWeight={600} gutterBottom>
         Used Cars for Sale
       </Typography>
