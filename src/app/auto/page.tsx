@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import CarCard from '@/components/carCard/carCard';
-import { useCarsStore } from '@/store/pages/cars/cars';
+import { useEffect } from "react";
+import CarCard from "@/components/carCard/carCard";
+import { useCarsStore } from "@/store/pages/cars/cars";
 
 import {
   Box,
@@ -12,9 +12,9 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
-} from '@mui/material';
+} from "@mui/material";
 
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
 export default function About() {
   const { cars, getCars } = useCarsStore();
@@ -24,12 +24,12 @@ export default function About() {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ maxWidth: '1180px', mt: 4 }}>
+    <Container maxWidth="lg" sx={{ maxWidth: "1180px", mt: 4 }}>
       <Typography variant="h5" fontWeight={600} gutterBottom>
         Used Cars for Sale
       </Typography>
 
-      <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+      <Box sx={{ display: "flex", gap: 2, mb: 4 }}>
         <FormControl sx={{ minWidth: 140 }} size="small">
           <InputLabel>Make</InputLabel>
           <Select defaultValue="">
@@ -71,7 +71,7 @@ export default function About() {
 
       <Grid container spacing={3}>
         {cars.map((car) => (
-          <Grid sm={6} md={3} key={car.id}>
+          <Grid item sm={6} md={3} key={car.id}> 
             <CarCard car={car} />
           </Grid>
         ))}
