@@ -14,8 +14,6 @@ import {
   FormControl,
 } from "@mui/material";
 
-import Grid from "@mui/material/Grid";
-
 export default function About() {
   const { cars, getCars } = useCarsStore();
 
@@ -29,7 +27,7 @@ export default function About() {
         Used Cars for Sale
       </Typography>
 
-      <Box sx={{ display: "flex", gap: 2, mb: 4 }}>
+      <Box sx={{ display: "flex", gap: 2, mb: 4, flexWrap: "wrap" }}>
         <FormControl sx={{ minWidth: 140 }} size="small">
           <InputLabel>Make</InputLabel>
           <Select defaultValue="">
@@ -69,13 +67,25 @@ export default function About() {
         </FormControl>
       </Box>
 
-      <Grid container spacing={3}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 3,
+        }}
+      >
         {cars.map((car) => (
-          <Grid item sm={6} md={3} key={car.id}> 
+          <Box
+            key={car.id}
+            sx={{
+              width: "270px",
+              boxSizing: "border-box",
+            }}
+          >
             <CarCard car={car} />
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Container>
   );
 }
