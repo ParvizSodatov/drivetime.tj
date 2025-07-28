@@ -12,7 +12,16 @@ import 'swiper/css';
 import 'swiper/css/autoplay'; // 
 import Link from 'next/link'
 import Parts from '@/components/parts/parts'
+import { useCarsStore } from '@/store/pages/cars/cars'
+import { useEffect } from 'react'
+import { Box } from '@mui/material'
 export default function Home() {
+  const { cars, getCars } = useCarsStore()
+  console.log(cars);
+  
+  useEffect(() => {
+    getCars();
+  }, []);
   return (
 	<div className='max-w-[1180px] mx-auto px-4 py-8'>
 
@@ -310,15 +319,30 @@ export default function Home() {
 
 
        <h1 className='text-[50px] py-[30px]'>
-        Featured Used Cars
+     Авто для продажи
        </h1>
 
-   <section className='flex jusstify-start gap-15 '>
-{/* <CarCard/> */}
-{/* <CarCard/>
-<CarCard/>
-<CarCard/> */}
-<PartCard/>
+   <section className=''>
+<Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 3,
+        }}
+      >
+        {cars.slice(0, 3).map((car) => (
+          <Box
+            key={car.id}
+            sx={{
+              width: "270px",
+              boxSizing: "border-box",
+            }}
+          >
+            <CarCard car={car} />
+          </Box>
+        ))}
+      </Box>
+
 
    </section>
 
