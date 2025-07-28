@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Card, CardMedia, CardContent, Typography, Grid, Box } from '@mui/material'
+import { Card, CardMedia, CardContent, Typography, Box, } from '@mui/material'
+import Grid from '@mui/material/Grid';
 
 type Car = {
 	id: number
@@ -19,7 +20,7 @@ const Parts = () => {
 	return (
 		<Grid container justifyContent="start" spacing={7}>
 			{fakeCars.map(car => (
-				<Grid key={car.id} xs={12} sm={6} md={4}>
+				<Box key={car.id} >
 					<Card
 						elevation={0}
 						sx={{
@@ -53,7 +54,7 @@ const Parts = () => {
 							</Typography>
 						</CardContent>
 					</Card>
-				</Grid>
+				</Box>
 			))}
 		</Grid>
 	)

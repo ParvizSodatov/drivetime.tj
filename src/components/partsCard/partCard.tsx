@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Card, CardMedia, CardContent, Typography, Grid } from '@mui/material'
+import { Card, CardMedia, CardContent, Typography, } from '@mui/material'
+import Grid from '@mui/material/Grid';
 
 type Car = {
 	id: number
