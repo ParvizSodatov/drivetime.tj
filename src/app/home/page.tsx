@@ -15,12 +15,18 @@ import Parts from '@/components/parts/parts'
 import { useCarsStore } from '@/store/pages/cars/cars'
 import { useEffect } from 'react'
 import { Box } from '@mui/material'
+import { useRentaStore } from '@/store/pages/renta/renta'
+import RentaCard from '@/components/rentaCard/rentaCard'
 export default function Home() {
   const { cars, getCars } = useCarsStore()
+  const { renta, getRenta } = useRentaStore();
+
+
   console.log(cars);
   
   useEffect(() => {
     getCars();
+    getRenta();
   }, []);
   return (
 	<div className='max-w-[1180px] mx-auto px-4 py-8'>
@@ -352,11 +358,25 @@ export default function Home() {
        </h1>
 
    <section className='flex jusstify-start gap-15 '>
-{/* <CarCard/> */}
-{/* <CarCard/>
-<CarCard/>
-<CarCard/> */}
-<PartCard/>
+<Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 3,
+        }}
+      >
+        {renta.slice(0,3).map((auto) => (
+          <Box
+            key={auto.id}
+            sx={{
+              width: "270px",
+              boxSizing: "border-box",
+            }}
+          >
+            <RentaCard auto={auto} />
+          </Box>
+        ))}
+      </Box>
 
    </section>
 
@@ -366,7 +386,7 @@ export default function Home() {
        </h1>
 
    <section className='flex justify-around'>
-<PartCard/>
+
    </section>
 
 
