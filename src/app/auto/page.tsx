@@ -7,13 +7,14 @@ import { useCarsStore } from '@/store/pages/cars/cars';
 import {
   Box,
   Container,
-  Grid,
   Typography,
   Select,
   MenuItem,
   InputLabel,
   FormControl,
 } from '@mui/material';
+
+import Grid from '@mui/material/Grid';
 
 export default function About() {
   const { cars, getCars } = useCarsStore();
@@ -70,7 +71,7 @@ export default function About() {
 
       <Grid container spacing={3}>
         {cars.map((car) => (
-          <Grid item xs={12} sm={6} md={3} key={car.id}>
+          <Grid sm={6} md={3} key={car.id}>
             <CarCard car={car} />
           </Grid>
         ))}
