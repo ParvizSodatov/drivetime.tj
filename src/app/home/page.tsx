@@ -11,12 +11,10 @@ import { Autoplay } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/autoplay'; // 
 import Link from 'next/link'
+import Parts from '@/components/parts/parts'
 export default function Home() {
   return (
 	<div className='max-w-[1180px] mx-auto px-4 py-8'>
-		
-
-
 
 <Swiper
       modules={[Autoplay]}
@@ -304,63 +302,7 @@ export default function Home() {
     </div>
   </section>
 </SwiperSlide>
-        {/* <SwiperSlide>
-        <section
-          style={{
-            backgroundImage: "url('/parviz/bgcar.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            height: '580px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '10px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-            marginBottom: '20px',
-          }}
-        >
-         
-        </section>
-      </SwiperSlide>
-
-       <SwiperSlide>
-        <section
-          style={{
-            backgroundImage: "url('/parviz/bgcar4.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            
-            height: '580px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '10px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-            marginBottom: '20px',
-          }}
-        >
-         
-        </section>
-      </SwiperSlide>
-   <SwiperSlide>
-        <section
-          style={{
-            backgroundImage: "url('/parviz/carbg3.jpeg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            
-            height: '580px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '10px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-            marginBottom: '20px',
-          }}
-        >
-         
-        </section>
-      </SwiperSlide> */}
+       
     
     </Swiper>
     
@@ -407,11 +349,11 @@ export default function Home() {
 
 
    
-     <h1 className='text-[50px] py-[30px]'>
+     <h1 className='text-[40px] py-[30px] font-bold'>
        Shop Parts & Accessories
        </h1>
-   <section className='flex justify-around'>
-<PartCard/>
+   <section className=''>
+<Parts/>
 
 
    </section>
