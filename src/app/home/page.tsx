@@ -26,6 +26,7 @@ export default function Home() {
       slidesPerView={1}
       spaceBetween={20}
       speed={1500}
+
     >
      <SwiperSlide>
   <section
@@ -112,7 +113,7 @@ export default function Home() {
       overflow: 'hidden',
     }}
   >
-    {/* затемнённый фон */}
+
     <div
       style={{
         position: 'absolute',
@@ -314,9 +315,10 @@ export default function Home() {
 
    <section className='flex jusstify-start gap-15 '>
 {/* <CarCard/> */}
+{/* <CarCard/>
 <CarCard/>
-<CarCard/>
-<CarCard/>
+<CarCard/> */}
+<PartCard/>
 
    </section>
 
@@ -327,9 +329,10 @@ export default function Home() {
 
    <section className='flex jusstify-start gap-15 '>
 {/* <CarCard/> */}
+{/* <CarCard/>
 <CarCard/>
-<CarCard/>
-<CarCard/>
+<CarCard/> */}
+<PartCard/>
 
    </section>
 
@@ -339,11 +342,7 @@ export default function Home() {
        </h1>
 
    <section className='flex justify-around'>
-<CarCard/>
-<CarCard/>
-<CarCard/>
-<CarCard/>
-
+<PartCard/>
    </section>
 
 
