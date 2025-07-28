@@ -71,7 +71,7 @@ export default function About() {
 
       <Grid container spacing={3}>
         {cars.map((car) => (
-          <Grid item sm={6} md={3} key={car.id}>
+          <Grid item sm={6} md={3} key={car.id}> 
             <CarCard car={car} />
           </Grid>
         ))}
