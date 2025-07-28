@@ -2,9 +2,8 @@
 
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography } from '@mui/material';
-import { API } from '@/utils/config';
 
-type Car = {
+type RentaCar = {
   id: number;
   title: string;
   images: string[];
@@ -14,12 +13,11 @@ type Car = {
   price?: number;
 };
 
-
 type CarCardProps = {
-  car: Car;
+  auto: RentaCar; // <-- используем auto
 };
 
-const CarCard: React.FC<CarCardProps> = ({ car }) => {
+const RentaCard: React.FC<CarCardProps> = ({ auto }) => {
   return (
     <Card
       elevation={0}
@@ -33,8 +31,8 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
     >
       <CardMedia
         component="img"
-        image={car.images[0]}
-        alt={car.title}
+        image={auto.images[0]}
+        alt={auto.title}
         sx={{
           width: '270px',
           height: '155px',
@@ -48,14 +46,14 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           fontWeight={600}
           sx={{ fontSize: '18px', lineHeight: '22px', mb: 0.5 }}
         >
-          {car.title} 
+          {auto.title}
         </Typography>
-        {car.price && (
+        {auto.price && (
           <Typography
             variant="body2"
             sx={{ color: '#6e7c87', fontSize: '15px', lineHeight: '20px' }}
           >
-            ${car.price}
+            ${auto.price}
           </Typography>
         )}
       </CardContent>
@@ -63,5 +61,4 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
   );
 };
 
-
-export default CarCard;
+export default RentaCard;
