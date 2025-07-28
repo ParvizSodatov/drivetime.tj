@@ -6,10 +6,14 @@ import { API } from '@/utils/config';
 
 type Car = {
   id: number;
-  year: number;
   title: string;
-  image: string;
+  images: string[];
+  specifications: {
+    year: number;
+  };
+  price?: number;
 };
+
 
 type CarCardProps = {
   car: Car;
@@ -44,17 +48,20 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           fontWeight={600}
           sx={{ fontSize: '18px', lineHeight: '22px', mb: 0.5 }}
         >
-          {car.title} {car.year}
+          {car.title} {car.specifications.year}
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{ color: '#6e7c87', fontSize: '15px', lineHeight: '20px' }}
-        >
-          ${car.price}
-        </Typography>
+        {car.price && (
+          <Typography
+            variant="body2"
+            sx={{ color: '#6e7c87', fontSize: '15px', lineHeight: '20px' }}
+          >
+            ${car.price}
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );
 };
+
 
 export default CarCard;
