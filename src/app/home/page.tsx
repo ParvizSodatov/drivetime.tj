@@ -17,9 +17,11 @@ import { useEffect } from 'react'
 import { Box } from '@mui/material'
 import { useRentaStore } from '@/store/pages/renta/renta'
 import RentaCard from '@/components/rentaCard/rentaCard'
+import { usePartsStore } from '@/store/pages/autoparts/autoparts'
 export default function Home() {
   const { cars, getCars } = useCarsStore()
   const { renta, getRenta } = useRentaStore();
+  const { parts, getParts } = usePartsStore();
 
 
   console.log(cars);
@@ -27,6 +29,7 @@ export default function Home() {
   useEffect(() => {
     getCars();
     getRenta();
+      getParts();
   }, []);
   return (
 	<div className='max-w-[1180px] mx-auto px-4 py-8'>
@@ -354,7 +357,7 @@ export default function Home() {
 
 
      <h1 className='text-[50px] py-[30px]'>
-        Featured Used Cars
+        Авто для аренды
        </h1>
 
    <section className='flex jusstify-start gap-15 '>
@@ -382,24 +385,18 @@ export default function Home() {
 
    
      <h1 className='text-[50px] py-[30px]'>
-        Find Repair Shops
+        Автозапчасти 
        </h1>
 
-   <section className='flex justify-around'>
-
-   </section>
-
-
-
-   
+  <section className="flex flex-wrap gap-4 w-full  justify-start p-4">
+        {parts.slice(0, 3).map((part) => (
+          <PartCard key={part.id} part={part} />
+        ))}
+      </section>
      <h1 className='text-[40px] py-[30px] font-bold'>
        Shop Parts & Accessories
        </h1>
-   <section className=''>
-<Parts/>
 
-
-   </section>
 
 
 	</div>
