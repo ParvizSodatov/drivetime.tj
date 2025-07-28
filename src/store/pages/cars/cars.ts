@@ -4,6 +4,7 @@ import { API } from './../../../utils/config';
 import  axios  from 'axios';
 
 interface Car {
+  id: number,
   title: string;
   description: string;
   images: string[];
