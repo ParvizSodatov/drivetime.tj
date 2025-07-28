@@ -26,6 +26,7 @@ export default function Home() {
       slidesPerView={1}
       spaceBetween={20}
       speed={1500}
+      
     >
      <SwiperSlide>
   <section
