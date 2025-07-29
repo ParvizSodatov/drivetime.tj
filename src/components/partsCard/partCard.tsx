@@ -22,16 +22,11 @@ export default function PartCard({ part }: Props) {
       <Card
         elevation={0}
         sx={{
-          width: 270,
-          height: 250,
+          width: '270px',
+          height: '223px',
           borderRadius: 2,
-          border: '1px solid #e0e0e0',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+          boxShadow: 'none',
           overflow: 'hidden',
-          transition: 'box-shadow 0.3s ease',
-          '&:hover': {
-            boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
-          },
         }}
       >
         <CardMedia
@@ -39,8 +34,8 @@ export default function PartCard({ part }: Props) {
           image={part.image}
           alt={part.name}
           sx={{
-            width: 270,
-            height: 190,
+            width: '270px',
+            height: '145px',
             objectFit: 'cover',
             borderRadius: '10px',
           }}
@@ -49,11 +44,14 @@ export default function PartCard({ part }: Props) {
           <Typography
             variant="h6"
             fontWeight={600}
-            sx={{ fontSize: 18, lineHeight: '22px', mb: '10px' }}
+            sx={{ fontSize: '18px', lineHeight: '22px', mb: 0.5 }}
           >
             {part.name}
           </Typography>
-          <Typography variant="body2" sx={{ fontSize: 16, color: '#555' }}>
+          <Typography
+            variant="body2"
+            sx={{ color: '#6e7c87', fontSize: '15px', lineHeight: '20px' }}
+          >
             ${part.price}
           </Typography>
         </CardContent>
