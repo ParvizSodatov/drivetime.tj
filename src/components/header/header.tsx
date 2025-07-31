@@ -15,6 +15,7 @@ export default function Header() {
 			 <Link href="/arenda"><li>Аренда</li></Link>
 			 <Link href="/auto-parts"><li>Запчасти</li></Link>
 			 <Link href="/sto"><li>СТО</li></Link>
+			 <Link href="/info"><li>Информация</li></Link>
 		  </ul>
 		  <div className="flex space-x-4">
 			<FavoriteBorderIcon/>
