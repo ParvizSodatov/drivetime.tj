@@ -10,7 +10,7 @@ type Car = {
   images: string[]
   specifications: {
     year: number
-    mileage?: number
+    mileage?: string
     fuelType?: string
   }
   price?: number
