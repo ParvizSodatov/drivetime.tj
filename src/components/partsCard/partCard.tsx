@@ -20,18 +20,15 @@ export default function PartCard({ part }: Props) {
   return (
     <Box sx={{ m: 1 }}>
       <Card
-        elevation={0}
+        elevation={1}
         sx={{
-          width: 270,
-          height: 250,
-          borderRadius: 2,
-          border: '1px solid #e0e0e0',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+          width: 325,
+          height: 370,
+          borderRadius: 3,
+          boxShadow: '0 1px 6px rgb(0 0 0 / 0.1)',
           overflow: 'hidden',
-          transition: 'box-shadow 0.3s ease',
-          '&:hover': {
-            boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
-          },
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         <CardMedia
@@ -39,23 +36,53 @@ export default function PartCard({ part }: Props) {
           image={part.image}
           alt={part.name}
           sx={{
-            width: 270,
-            height: 190,
+            width: '100%',
+            height: 210,
             objectFit: 'cover',
-            borderRadius: '10px',
+            backgroundColor: '#f0f0f0',
           }}
         />
-        <CardContent sx={{ px: 2, pt: 1.5, pb: 2 }}>
-          <Typography
-            variant="h6"
-            fontWeight={600}
-            sx={{ fontSize: 18, lineHeight: '22px', mb: '10px' }}
+
+        <CardContent
+          sx={{
+            p: 2,
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>
+            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 1 }}>
+              {part.name}
+            </Typography>
+
+            {part.category && (
+              <div style={{ display: 'flex', gap: 16, color: '#6e7c87', fontSize: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span>{part.category}</span>
+                </div>
+                {part.inStock !== undefined && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span>{part.inStock ? 'В наличии' : 'Под заказ'}</span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginTop: 14,
+            }}
           >
-            {part.name}
-          </Typography>
-          <Typography variant="body2" sx={{ fontSize: 16, color: '#555' }}>
-            ${part.price}
-          </Typography>
+            <Typography variant="h6" fontWeight={700} sx={{ fontSize: 24 }}>
+              ${part.price.toLocaleString()}
+            </Typography>
+          </div>
         </CardContent>
       </Card>
     </Box>
