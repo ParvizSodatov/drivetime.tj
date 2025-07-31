@@ -256,6 +256,7 @@ export default function Home() {
             }}
           >
             {cars.map((car) => (
+              <Link key={car.id} href={`/home/${car.id}`}>
               <Box
                 key={car.id}
                 sx={{
@@ -265,6 +266,7 @@ export default function Home() {
               >
                 <CarCard car={car} />
               </Box>
+              </Link>
             ))}
           </Box>
         </section>

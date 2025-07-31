@@ -18,6 +18,7 @@ interface Car {
     transmission: string;
     color: string;
   };
+  price: number
   seller: {
     name: string;
     contactAvailable: boolean;

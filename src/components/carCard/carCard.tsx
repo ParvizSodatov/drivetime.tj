@@ -68,7 +68,7 @@ export default function CarCard({ car, isFavorite = false }: CarCardProps) {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <Gauge size={16} />
-              <span>{car.specifications.mileage ? car.specifications.mileage.toLocaleString() + ' км' : '—'}</span>
+              <span>{car.specifications.mileage ? car.specifications.mileage + ' км' : '—'}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span>{car.specifications.fuelType ?? '—'}</span>
@@ -85,7 +85,7 @@ export default function CarCard({ car, isFavorite = false }: CarCardProps) {
           }}
         >
           <Typography variant="h6" fontWeight={700} sx={{ fontSize: 24 }}>
-            {car.price ? `$${car.price.toLocaleString()}` : '—'}
+            {car.price ? `$${car.price}` : '—'}
           </Typography>
 
           <IconButton
