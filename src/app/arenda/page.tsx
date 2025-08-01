@@ -13,6 +13,7 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
+import Link from 'next/link'
 
 export default function About() {
   const { renta, getRenta } = useRentaStore();
@@ -22,7 +23,12 @@ export default function About() {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ maxWidth: "1180px", mt: 4, height: "500px" }}>
+    <Container maxWidth={false} sx={{  maxWidth: "1380px",
+    width: "100%",
+    mx: "auto",
+    mt: 4,
+    height: "500px",
+    boxSizing: "border-box",}}>
       <Typography variant="h5" fontWeight={600} gutterBottom>
         Used Cars for Rent
       </Typography>
@@ -71,10 +77,12 @@ export default function About() {
         sx={{
           display: "flex",
           flexWrap: "wrap",
+          justifyContent:'space-around',
           gap: 3,
         }}
       >
         {renta.map((auto) => (
+        <Link key={auto.id}  href={`/arenda/${auto.id}`}>
           <Box
             key={auto.id}
             sx={{
@@ -84,6 +92,7 @@ export default function About() {
           >
             <RentaCard auto={auto} />
           </Box>
+        </Link>
         ))}
       </Box>
     </Container>

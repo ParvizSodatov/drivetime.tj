@@ -1,91 +1,100 @@
-"use client";
+  "use client";
 
-import { useEffect } from "react";
-import CarCard from "@/components/carCard/carCard";
-import { useCarsStore } from "@/store/pages/cars/cars";
+  import { useEffect } from "react";
+  import CarCard from "@/components/carCard/carCard";
+  import { useCarsStore } from "@/store/pages/cars/cars";
 
-import {
-  Box,
-  Container,
-  Typography,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
+  import {
+    Box,
+    Container,
+    Typography,
+    Select,
+    MenuItem,
+    InputLabel,
+    FormControl,
+  } from "@mui/material";
+  import Link from 'next/link'
 
-export default function About() {
-  const { cars, getCars } = useCarsStore();
+  export default function About() {
+    const { cars, getCars } = useCarsStore();
 
-  useEffect(() => {
-    getCars();
-  }, []);
+    useEffect(() => {
+      getCars();
+    }, []);
 
-  return (
-    <Container maxWidth="lg" sx={{ maxWidth: "1180px", mt: 4, height: "500px"}}>
-      <Typography variant="h5" fontWeight={600} gutterBottom>
-        Used Cars for Sale
-      </Typography>
+    return (
+      <Container maxWidth={false} sx={{  maxWidth: "1380px",
+    width: "100%",
+    mx: "auto",
+    mt: 4,
+    height: "500px",
+    boxSizing: "border-box",}}>
+        <Typography variant="h5" fontWeight={600} gutterBottom>
+          Used Cars for Sale
+        </Typography>
 
-      <Box sx={{ display: "flex", gap: 2, mb: 4, flexWrap: "wrap" }}>
-        <FormControl sx={{ minWidth: 140 }} size="small">
-          <InputLabel>Make</InputLabel>
-          <Select defaultValue="">
-            <MenuItem value="">All</MenuItem>
-            <MenuItem value="Toyota">Toyota</MenuItem>
-            <MenuItem value="Honda">Honda</MenuItem>
-            <MenuItem value="Ford">Ford</MenuItem>
-          </Select>
-        </FormControl>
+        <Box sx={{ display: "flex", gap: 2, mb: 4, flexWrap: "wrap" }}>
+          <FormControl sx={{ minWidth: 140 }} size="small">
+            <InputLabel>Make</InputLabel>
+            <Select defaultValue="">
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="Toyota">Toyota</MenuItem>
+              <MenuItem value="Honda">Honda</MenuItem>
+              <MenuItem value="Ford">Ford</MenuItem>
+            </Select>
+          </FormControl>
 
-        <FormControl sx={{ minWidth: 140 }} size="small">
-          <InputLabel>Price Range</InputLabel>
-          <Select defaultValue="">
-            <MenuItem value="">All</MenuItem>
-            <MenuItem value="0-20000">$0 - $20,000</MenuItem>
-            <MenuItem value="20000-40000">$20,000 - $40,000</MenuItem>
-          </Select>
-        </FormControl>
+          <FormControl sx={{ minWidth: 140 }} size="small">
+            <InputLabel>Price Range</InputLabel>
+            <Select defaultValue="">
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="0-20000">$0 - $20,000</MenuItem>
+              <MenuItem value="20000-40000">$20,000 - $40,000</MenuItem>
+            </Select>
+          </FormControl>
 
-        <FormControl sx={{ minWidth: 140 }} size="small">
-          <InputLabel>Year</InputLabel>
-          <Select defaultValue="">
-            <MenuItem value="">All</MenuItem>
-            <MenuItem value="2021">2021</MenuItem>
-            <MenuItem value="2020">2020</MenuItem>
-            <MenuItem value="2019">2019</MenuItem>
-          </Select>
-        </FormControl>
+          <FormControl sx={{ minWidth: 140 }} size="small">
+            <InputLabel>Year</InputLabel>
+            <Select defaultValue="">
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="2021">2021</MenuItem>
+              <MenuItem value="2020">2020</MenuItem>
+              <MenuItem value="2019">2019</MenuItem>
+            </Select>
+          </FormControl>
 
-        <FormControl sx={{ minWidth: 140 }} size="small">
-          <InputLabel>Mileage</InputLabel>
-          <Select defaultValue="">
-            <MenuItem value="">All</MenuItem>
-            <MenuItem value="0-50000">0 - 50,000 km</MenuItem>
-            <MenuItem value="50000-100000">50,000 - 100,000 km</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+          <FormControl sx={{ minWidth: 140 }} size="small">
+            <InputLabel>Mileage</InputLabel>
+            <Select defaultValue="">
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="0-50000">0 - 50,000 km</MenuItem>
+              <MenuItem value="50000-100000">50,000 - 100,000 km</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 3,
-        }}
-      >
-        {cars.map((car) => (
-          <Box
-            key={car.id}
-            sx={{
-              width: "270px",
-              boxSizing: "border-box",
-            }}
-          >
-            <CarCard car={car} />
-          </Box>
-        ))}
-      </Box>
-    </Container>
-  );
-}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent:'space-around',
+            gap: 3,
+          }}
+        >
+          {cars.map((car) => (
+          <Link  key={car.id} href={`/auto/${car.id}`}>
+            <Box
+              key={car.id}
+              sx={{
+                width: "270px",
+                boxSizing: "border-box",
+              }}
+            >
+              <CarCard car={car} />
+            </Box>
+          </Link>
+          ))}
+        </Box>
+      </Container>
+    );
+  }
