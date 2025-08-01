@@ -1,7 +1,7 @@
 'use client'
-
 import { useCarsStore } from '@/store/pages/cars/cars'
-import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import {
 	Heart,
@@ -14,27 +14,20 @@ import {
 	Fuel,
 } from 'lucide-react'
 
-import { useParams } from 'next/navigation'
-import React, { useEffect } from 'react'
-
-const Page = () => {
+const Page=()=>{
 	const { id } = useParams()
-	const { cars, getCars } = useCarsStore()
-	const car = cars.find(e => Number(e.id) === Number(id))
-
-	console.log(car)
-
+		const { cars, getCars } = useCarsStore()
+		const car = cars.find(e => Number(e.id) === Number(id))
 	useEffect(() => {
-		getCars()
-	}, [])
-
-	return (
-		<div className='container mx-auto p-4 md:p-8 bg-white'>
+			getCars()
+		}, [])
+return (
+	<div className='container mx-auto p-4 md:p-8 bg-white'>
 			<div className='grid grid-cols-1 lg:grid-cols-[minmax(0,500px)_1fr] gap-8'>
-				{/* Left Column: Images */}
+				
 				<div className='flex flex-col gap-4'>
 					<div className='bg-gray-100 rounded-lg overflow-hidden aspect-[3/2] flex items-center justify-center'>
-						<Image
+						<img
 							src={car?.images[0]}
 							alt='Toyota Camry thumbnail 3'
 							width={100}
@@ -44,7 +37,7 @@ const Page = () => {
 					</div>
 					<div className='grid grid-cols-3 gap-4'>
 						<div className='bg-gray-100 rounded-lg overflow-hidden aspect-square flex items-center justify-center'>
-							<Image
+							<img
 								src={car?.images[0]}
 								alt='Toyota Camry thumbnail 3'
 								width={100}
@@ -53,7 +46,7 @@ const Page = () => {
 							/>
 						</div>
 						<div className='bg-gray-100 rounded-lg overflow-hidden aspect-square flex items-center justify-center'>
-							<Image
+							<img
 								src={car?.images[0]}
 								alt='Toyota Camry thumbnail 3'
 								width={100}
@@ -62,7 +55,7 @@ const Page = () => {
 							/>
 						</div>
 						<div className='bg-gray-100 rounded-lg overflow-hidden aspect-square flex items-center justify-center'>
-							<Image
+							<img
 								src={car?.images[0]}
 								alt='Toyota Camry thumbnail 3'
 								width={100}
@@ -130,7 +123,6 @@ const Page = () => {
 				</div>
 			</div>
 		</div>
-	)
+)
 }
-
 export default Page
