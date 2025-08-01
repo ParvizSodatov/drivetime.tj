@@ -68,7 +68,7 @@ export default function About() {
           <Select defaultValue="">
             <MenuItem value="">All</MenuItem>
             <MenuItem value="0-50000">0 - 50,000 km</MenuItem>
-            <MenuItem value="50000-100000">50,000 - 100,000 km</MenuItem>
+            <MenuItem value="50000-100000">50,1879 - 100,000 km</MenuItem>
           </Select>
         </FormControl>
       </Box>
