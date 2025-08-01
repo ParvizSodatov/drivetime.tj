@@ -15,7 +15,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full px-6 py-4 shadow-md bg-white sticky top-0 z-50">
+      <header className="w-full px-6 py-4 shadow-md bg-white-200/30 backdrop-blur sticky top-0 z-50">
+
         <nav className="max-w-[1240px] mx-auto flex items-center justify-between gap-4">
           
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition shrink-0">
@@ -28,7 +29,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Поиск..."
-              className="w-full px-4 pl-10 py-2 rounded-full bg-gray-100 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 pl-10 py-2 rounded-full bg-white/20 backdrop-blur text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
             />
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
           </div>
