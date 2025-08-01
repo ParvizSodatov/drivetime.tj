@@ -6,92 +6,133 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
+  TextField,
+  Box,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { usePartsStore } from "@/store/pages/autoparts/autoparts";
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function ZapchastiPage() {
   const { parts, getParts } = usePartsStore();
 
-  const [make, setMake] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const [brand, setBrand] = useState<string>("");
-
-  const handleChangeMake = (e: SelectChangeEvent) => {
-    setMake(e.target.value);
-  };
-
-  const handleChangeCategory = (e: SelectChangeEvent) => {
-    setCategory(e.target.value);
-  };
-
-  const handleChangeBrand = (e: SelectChangeEvent) => {
-    setBrand(e.target.value);
-  };
+  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
+  const [priceMin, setPriceMin] = useState<number | "">("");
+  const [priceMax, setPriceMax] = useState<number | "">("");
 
   useEffect(() => {
     getParts();
   }, []);
 
+  // Фильтры брендов для выбора (просто пример, можно менять или получать динамически)
+  const brandsList = ["Bosch", "VARTA", "Brembo"];
+
+  const filteredParts = useMemo(() => {
+    return parts.filter((part) => {
+      // Категория фильтра
+      const categoryMatch = category === "" || part.category === category;
+
+      // Фильтрация по бренду — ищем в названии части бренды из списка (поиск по подстроке)
+      const brandMatch =
+        brand === "" ||
+        part.name.toLowerCase().includes(brand.toLowerCase());
+
+      // Цена
+      const priceMatch =
+        (priceMin === "" || part.price >= priceMin) &&
+        (priceMax === "" || part.price <= priceMax);
+
+      return categoryMatch && brandMatch && priceMatch;
+    });
+  }, [parts, category, brand, priceMin, priceMax]);
+
   return (
-    <div className="max-w-[1280px] mx-auto px-4 py-8">
+    <Box className="max-w-[1280px] mx-auto px-4 py-8">
       <h1 className="text-[40px] font-bold mt-[25px]">Parts & Accessories</h1>
 
       {/* Фильтры */}
-      <section className="flex items-center gap-4 mt-8">
-        <FormControl sx={{ width: "120px" }}>
-          <InputLabel id="make-select-label">Make</InputLabel>
-          <Select
-            labelId="make-select-label"
-            id="make-select"
-            value={make}
-            label="Make"
-            onChange={handleChangeMake}
-          >
-            <MenuItem value="Toyota">Toyota</MenuItem>
-            <MenuItem value="BMW">BMW</MenuItem>
-            <MenuItem value="Mercedes">Mercedes</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl sx={{ width: "120px" }}>
+      <Box sx={{ display: "flex", gap: 2, mt: 4, flexWrap: "wrap", alignItems: "center" }}>
+        <FormControl sx={{ minWidth: 140 }} size="small">
           <InputLabel id="category-select-label">Category</InputLabel>
           <Select
             labelId="category-select-label"
             id="category-select"
             value={category}
             label="Category"
-            onChange={handleChangeCategory}
+            onChange={(e) => setCategory(e.target.value)}
+            displayEmpty
           >
+            {/* <MenuItem value="">Выбрать категорию</MenuItem> */}
+            {/* Сюда можно динамически запихнуть уникальные категории, если хочешь */}
             <MenuItem value="Фильтры">Фильтры</MenuItem>
             <MenuItem value="Электрооборудование">Электрооборудование</MenuItem>
             <MenuItem value="Тормозная система">Тормозная система</MenuItem>
           </Select>
         </FormControl>
 
-        <FormControl sx={{ width: "120px" }}>
+        <FormControl sx={{ minWidth: 140 }} size="small">
           <InputLabel id="brand-select-label">Brand</InputLabel>
           <Select
             labelId="brand-select-label"
             id="brand-select"
             value={brand}
             label="Brand"
-            onChange={handleChangeBrand}
+            onChange={(e) => setBrand(e.target.value)}
+            displayEmpty
           >
-            <MenuItem value="Bosch">Bosch</MenuItem>
-            <MenuItem value="VARTA">VARTA</MenuItem>
-            <MenuItem value="Brembo">Brembo</MenuItem>
+            
+            {brandsList.map((b) => (
+              <MenuItem key={b} value={b}>
+                {b}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
-      </section>
 
-      <section className="flex flex-wrap gap-4 mt-8 w-full  justify-start p-4">
-        {parts.map((part) => (
-          <Link key={part.id} href={`/auto-parts/${part.id}`}><PartCard key={part.id} part={part} /></Link>
-        ))}
-      </section>
-    </div>
+        <TextField
+          label="Min Price"
+          type="number"
+          size="small"
+          value={priceMin}
+          onChange={(e) => {
+            const val = e.target.value;
+            setPriceMin(val === "" ? "" : Number(val));
+          }}
+          sx={{ width: 100 }}
+          InputProps={{ inputProps: { min: 0 } }}
+        />
+
+        <TextField
+          label="Max Price"
+          type="number"
+          size="small"
+          value={priceMax}
+          onChange={(e) => {
+            const val = e.target.value;
+            setPriceMax(val === "" ? "" : Number(val));
+          }}
+          sx={{ width: 100 }}
+          InputProps={{ inputProps: { min: 0 } }}
+        />
+      </Box>
+
+      {/* Список деталей */}
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, mt: 4, justifyContent: "flex-start" }}>
+        {filteredParts.length === 0 ? (
+          <Box sx={{ width: "100%", textAlign: "center", color: "gray", mt: 4 }}>
+            Деталей с такими параметрами не найдено.
+          </Box>
+        ) : (
+          filteredParts.map((part) => (
+            <Link key={part.id} href={`/auto-parts/${part.id}`}>
+              <Box sx={{ width: "315px", boxSizing: "border-box" }}>
+                <PartCard part={part} />
+              </Box>
+            </Link>
+          ))
+        )}
+      </Box>
+    </Box>
   );
 }
