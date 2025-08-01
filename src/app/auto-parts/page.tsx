@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import { usePartsStore } from "@/store/pages/autoparts/autoparts";
+import Link from 'next/link'
 
 export default function ZapchastiPage() {
   const { parts, getParts } = usePartsStore();
@@ -35,7 +36,7 @@ export default function ZapchastiPage() {
   }, []);
 
   return (
-    <div className="max-w-[1180px] mx-auto px-4 py-8">
+    <div className="max-w-[1280px] mx-auto px-4 py-8">
       <h1 className="text-[40px] font-bold mt-[25px]">Parts & Accessories</h1>
 
       {/* Фильтры */}
@@ -88,7 +89,7 @@ export default function ZapchastiPage() {
 
       <section className="flex flex-wrap gap-4 mt-8 w-full  justify-start p-4">
         {parts.map((part) => (
-          <PartCard key={part.id} part={part} />
+          <Link key={part.id} href={`/auto-parts/${part.id}`}><PartCard key={part.id} part={part} /></Link>
         ))}
       </section>
     </div>
