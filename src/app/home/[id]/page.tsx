@@ -18,6 +18,9 @@ const Page=()=>{
 	const { id } = useParams()
 		const { cars, getCars } = useCarsStore()
 		const car = cars.find(e => Number(e.id) === Number(id))
+
+
+		
 	useEffect(() => {
 			getCars()
 		}, [])
