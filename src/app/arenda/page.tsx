@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 
+
 export default function About() {
   const { renta, getRenta } = useRentaStore();
 
