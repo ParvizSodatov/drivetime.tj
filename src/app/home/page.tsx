@@ -97,7 +97,7 @@ export default function Home() {
 </ScrollReveal>
 
       {/* Автомобили */}
-    <ScrollReveal>
+   <ScrollReveal>
   <div
     className="relative w-[90%] mx-auto mt-20 mb-10 rounded-[24px] overflow-hidden"
     style={{ height: '380px' }}
@@ -114,22 +114,29 @@ export default function Home() {
     />
 
     {/* Затемнение */}
-    <div className="absolute inset-0 bg-black/30 z-10" />
+    <div className="absolute inset-0 bg-black/40 z-10" />
 
     {/* Контент поверх */}
     <div className="relative z-20 h-full flex items-center justify-end">
-      <div className="text-white text-right pr-20">
+      <div className="text-white text-right pr-10 sm:pr-16 lg:pr-20">
         <h1
-          className="text-4xl lg:text-5xl font-bold leading-tight mb-6"
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
           style={{
-            textShadow: '0 4px 10px rgba(0, 0, 0, 0.6)', // красивая глубокая тень
+            textShadow: '0 4px 16px rgba(0, 0, 0, 0.7)',
+            lineHeight: '1.2',
           }}
         >
-          Автомобили<br />в наличии
+          <span className="text-white">Автомобили</span><br />
+          <span className="text-[#ad5a2a]">в наличии</span>
         </h1>
+
+        <p className="text-lg sm:text-xl lg:text-2xl font-medium max-w-xl mb-6 text-white/90">
+          Выгодные цены и большой выбор — для города, семьи и отдыха.
+        </p>
+
         <Link href="/auto">
-          <button className="bg-transparent hover:bg-white/10 text-white border border-white px-6 py-3 rounded-full font-semibold transition-all">
-            Все авто
+          <button className="bg-white/10 hover:bg-white/20 text-white border border-white px-6 py-3 rounded-full font-semibold transition-all backdrop-blur-sm">
+            Смотреть авто
           </button>
         </Link>
       </div>
@@ -138,7 +145,8 @@ export default function Home() {
 </ScrollReveal>
 
 
-{/* Список автомобилей */}
+
+
   <section className="flex justify-center">
     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
       {(cars.length ? cars : Array(4).fill(null)).map((car, index) => (
@@ -166,54 +174,66 @@ export default function Home() {
       {/* Аренда */}
       <section className="w-full px-4 pt-[30px] mt-15">
 
-  <ScrollReveal>
-    <div
-      className="relative w-[92%] mx-auto mb-10 rounded-[24px] overflow-hidden"
-      style={{ height: '380px' }}
-    >
-      {/* Видеофон */}
-      <video
-        src="/renta.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: 'center 87%' }}
-      />
+ <ScrollReveal>
+  <div
+    className="relative w-[92%] mx-auto mb-10 rounded-[24px] overflow-hidden"
+    style={{ height: '380px' }}
+  >
+    {/* Видеофон */}
+    <video
+      src="/renta.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover"
+      style={{ objectPosition: 'center 87%' }}
+    />
 
-      {/* Затемнение */}
-      <div className="absolute inset-0 bg-black/30 z-10" />
+    {/* Затемнение */}
+    <div className="absolute inset-0 bg-black/40 z-10" />
 
-      {/* Контент поверх */}
-      <div className="relative z-20 h-full flex items-center justify-end">
-        <div className="text-white text-right pr-20">
-          <h1
-            className="text-4xl lg:text-5xl font-bold leading-tight mb-6"
-            style={{
-              textShadow: '0 4px 10px rgba(0, 0, 0, 0.6)',
-            }}
-          >
-            Доступные машины <br /> для аренды
-          </h1>
-          <Link href="/arenda">
-            <button className="bg-transparent hover:bg-white/10 text-white border border-white px-6 py-3 rounded-full font-semibold transition-all">
-              Все аренды
-            </button>
-          </Link>
-        </div>
+    {/* Контент поверх */}
+    <div className="relative z-20 h-full flex items-center justify-end">
+      <div className="text-white text-right pr-10 sm:pr-16 lg:pr-20">
+        <h1
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
+          style={{
+            textShadow: '0 4px 16px rgba(0, 0, 0, 0.7)',
+            lineHeight: '1.2',
+          }}
+        >
+          <span className="text-white">Доступные</span>{' '}
+          <span className="text-white">машины</span> <br />
+          <span className="text-white">для</span>{' '}
+          <span className="text-[#0066ff]">аренды</span>
+        </h1>
+
+        <p className="text-lg sm:text-xl lg:text-2xl font-medium max-w-xl mb-6 text-white/90">
+          Арендуй авто и будь свободен — помоги друзьям, уезжай за город или просто катайся!
+        </p>
+
+        <Link href="/arenda">
+          <button className="bg-white/10 hover:bg-white/20 text-white border border-white px-6 py-3 rounded-full font-semibold transition-all backdrop-blur-sm">
+            Смотреть автомобили
+          </button>
+        </Link>
       </div>
     </div>
-  </ScrollReveal>
+  </div>
+</ScrollReveal>
+
 
   <section className="flex justify-center">
     <Box sx={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
       {(renta.length ? renta.slice(0, 4) : Array(4).fill(null)).map((auto, index) => (
         <ScrollReveal key={auto?.id || index} delay={index * 0.1}>
           {auto ? (
+           <Link href={`/home/renta/${auto.id}`}>
             <Box sx={{ width: '325px', boxSizing: 'border-box' }}>
               <RentaCard auto={auto} />
             </Box>
+           </Link>
           ) : (
             <Skeleton variant="rectangular" width={325} height={300} sx={{ borderRadius: 2 }} />
           )}
@@ -228,50 +248,62 @@ export default function Home() {
       <section className="w-full px-4 pt-[30px] mb-20 mt-15">
 
   <ScrollReveal>
-    <div
-      className="relative w-[92%] mx-auto mb-10 rounded-[24px] overflow-hidden"
-      style={{ height: '380px' }}
-    >
-      {/* Видеофон */}
-      <video
-        src="/parts.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: 'center 87%' }}
-      />
+  <div
+    className="relative w-[92%] mx-auto mb-10 rounded-[24px] overflow-hidden"
+    style={{ height: '380px' }}
+  >
+    {/* Видеофон */}
+    <video
+      src="/parts.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover"
+      style={{ objectPosition: 'center 87%' }}
+    />
 
-      {/* Затемнение */}
-      <div className="absolute inset-0 bg-black/50 z-10" />
+    {/* Затемнение */}
+    <div className="absolute inset-0 bg-black/60 z-10" />
 
-      {/* Контент поверх */}
-      <div className="relative z-20 h-full flex items-center justify-start">
-        <div className="text-white text-left pl-20">
-          <h1
-            className="text-4xl lg:text-5xl font-bold leading-tight mb-6"
-            style={{
-              textShadow: '0 4px 10px rgba(0, 0, 0, 0.6)',
-            }}
-          >
-            Качественныезапчасти <br /> для вашего авто
-          </h1>
-          <Link href="/sto">
-            <button className="bg-transparent hover:bg-white/10 text-white border border-white px-6 py-3 rounded-full font-semibold transition-all">
-              Все запчасти
-            </button>
-          </Link>
-        </div>
+    {/* Контент поверх */}
+    <div className="relative z-20 h-full flex items-center justify-start">
+      <div className="text-white text-left pl-10 sm:pl-16 lg:pl-20">
+        <h1
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
+          style={{
+            textShadow: '0 4px 16px rgba(0, 0, 0, 0.7)',
+            lineHeight: '1.2',
+          }}
+        >
+          <span className="text-white">Качественные</span>{' '}
+          <span className="text-[#eaa61e]">запчасти</span> <br />
+          <span className="text-white">для вашего</span>{' '}
+          <span className="text-[#eaa61e]">авто</span>
+        </h1>
+
+        <p className="text-lg sm:text-xl lg:text-2xl font-medium max-w-xl mb-6 text-white/90">
+          Хорошие детали — залог уверенной дороги.
+        </p>
+
+        <Link href="/sto">
+          <button className="bg-white/10 hover:bg-white/20 text-white border border-white px-6 py-3 rounded-full font-semibold transition-all backdrop-blur-sm">
+            Смотреть запчасти
+          </button>
+        </Link>
       </div>
     </div>
-  </ScrollReveal>
+  </div>
+</ScrollReveal>
+
 
   <section className="flex flex-wrap gap-2 w-full justify-center p-4">
     {(parts.length ? parts.slice(0, 4) : Array(4).fill(null)).map((part, index) => (
       <ScrollReveal key={part?.id || index} delay={index * 0.1}>
         {part ? (
+       <Link href={`/home/parts/${part.id}`}>
           <PartCard part={part} />
+       </Link>
         ) : (
           <Skeleton variant="rectangular" width={300} height={180} sx={{ borderRadius: 2 }} />
         )}
