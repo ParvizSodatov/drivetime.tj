@@ -116,7 +116,7 @@ const Page=()=>{
 						</p>
 					</div>
 
-					<Button className='mt-8 w-full py-3 bg-[#FF5722] hover:bg-[#E64A19] text-white text-lg font-semibold rounded-lg shadow-md'>
+					<Button className='mt-8 w-full py-[26px] bg-[#1e2133] hover:bg-[#687288] text-white text-lg font-semibold rounded-lg shadow-md'>
 						Связаться с продавцом
 					</Button>
 				</div>
