@@ -15,39 +15,37 @@ import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import { useState } from "react";
 import Link from "next/link";
-import { useAuthStore } from '@/store/pages/registration/registr';
+
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/store/auth/store'
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const { register, isLoading } = useAuthStore();
+  const { register } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
-    if (password !== confirmPassword) {
-      setError("Пароли не совпадают");
-      return;
-    }
+    const success = await register({ fullName, phoneNumber, email, password });
 
-    try {
-      await register(name, email, password);
-      setName("");
+    if (success) {
+      setFullName("");
       setEmail("");
+      setPhoneNumber("");
       setPassword("");
-      setConfirmPassword("");
       router.push('/login');
-    } catch (err: any) {
-      setError(err.message || "Ошибка регистрации");
+    } else {
+      setError("Ошибка регистрации. Попробуйте снова.");
     }
   };
 
@@ -111,15 +109,30 @@ export default function RegisterForm() {
 
           <form onSubmit={handleSubmit}>
             <TextField
-              label="Имя"
+              label="Полное имя"
               fullWidth
               margin="normal"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <PersonIcon />
+                  </InputAdornment>
+                ),
+              }}
+              required
+            />
+            <TextField
+              label="Номер телефона"
+              fullWidth
+              margin="normal"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PhoneAndroidIcon />
                   </InputAdornment>
                 ),
               }}
@@ -167,41 +180,14 @@ export default function RegisterForm() {
               }}
               required
             />
-            <TextField
-              label="Подтвердите пароль"
-              type={showPassword ? "text" : "password"}
-              fullWidth
-              margin="normal"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LockIcon />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              required
-            />
 
             <Button
               type="submit"
               variant="contained"
               fullWidth
               sx={{ mt: 2 }}
-              disabled={isLoading}
             >
-              {isLoading ? "Загрузка..." : "Зарегистрироваться"}
+              Зарегистрироваться
             </Button>
           </form>
 

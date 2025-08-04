@@ -17,27 +17,34 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import Link from "next/link";
-// import { useAuthStore } from "@/store/auth"; // путь подкорректируй под себя
 import { useRouter } from "next/navigation";
-import { useLoginStore } from '@/store/pages/login/login'
-
+import { useAuth } from '@/store/auth/store'
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const { login, isLoading, error } = useLoginStore();
+  const { login } = useAuth();
   const router = useRouter();
 
   const handleLogin = async () => {
-    try {
-      await login(name, password);
-      router.push("/"); 
-    } catch (e) {
-    
+    setError(null);
+    setIsLoading(true);
+
+    const success = await login({ fullName, password });
+
+    if (success) {
+      router.push("/");
+    } else {
+      setError("Неверное имя или пароль");
     }
+
+    setIsLoading(false);
   };
+
   return (
     <Box
       sx={{
@@ -46,6 +53,7 @@ export default function LoginPage() {
         flexDirection: { xs: "column", md: "row" },
       }}
     >
+      {/* Левая часть */}
       <Box
         sx={{
           flex: 1,
@@ -65,10 +73,7 @@ export default function LoginPage() {
         <Typography variant="h6" gutterBottom>
           Добро пожаловать!
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{ textAlign: "center", maxWidth: 400 }}
-        >
+        <Typography variant="body1" sx={{ textAlign: "center", maxWidth: 400 }}>
           Откройте доступ к лучшим предложениям по продаже, аренде и запчастям
           для автомобилей. Всё, что нужно вашему авто — в одном месте.
         </Typography>
@@ -85,16 +90,9 @@ export default function LoginPage() {
           py: 6,
         }}
       >
-        <Paper
-          elevation={3}
-          sx={{
-            p: 4,
-            width: "100%",
-            maxWidth: 400,
-          }}
-        >
+        <Paper elevation={3} sx={{ p: 4, width: "100%", maxWidth: 400 }}>
           <Typography variant="h5" fontWeight="bold" gutterBottom>
-            Логин
+            Вход
           </Typography>
 
           {error && (
@@ -107,8 +105,8 @@ export default function LoginPage() {
             label="Имя"
             fullWidth
             margin="normal"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -116,6 +114,7 @@ export default function LoginPage() {
                 </InputAdornment>
               ),
             }}
+            required
           />
 
           <TextField
@@ -133,14 +132,13 @@ export default function LoginPage() {
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
+                  <IconButton onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
+            required
           />
 
           <Button
@@ -156,7 +154,7 @@ export default function LoginPage() {
           <Typography variant="body2" align="center" mt={2}>
             Нет аккаунта?{" "}
             <Link className="text-blue-600 underline" href="/registration">
-              Регистрация
+              Зарегистрироваться
             </Link>
           </Typography>
         </Paper>
