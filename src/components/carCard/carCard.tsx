@@ -3,6 +3,7 @@
 import React from 'react'
 import { Card, CardMedia, CardContent, Typography, IconButton } from '@mui/material'
 import { Heart, Calendar, Gauge } from 'lucide-react'
+import { useWishlistStore } from '@/store/wishlist/wishlist'
 
 type Car = {
   id: number
@@ -18,10 +19,29 @@ type Car = {
 
 type CarCardProps = {
   car: Car
-  isFavorite?: boolean
 }
 
-export default function CarCard({ car, isFavorite = false }: CarCardProps) {
+export default function CarCard({ car }: CarCardProps) {
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlistStore()
+
+  const carItem = {
+    id: car.id,
+    title: car.title,
+    image: car.images?.[0],
+    price: car.price,
+    category: 'car' as const,
+  }
+
+  const liked = isInWishlist(car.id, 'car')
+
+  const toggleWishlist = () => {
+    if (liked) {
+      removeFromWishlist(car.id, 'car')
+    } else {
+      addToWishlist(carItem)
+    }
+  }
+
   return (
     <Card
       elevation={1}
@@ -39,7 +59,7 @@ export default function CarCard({ car, isFavorite = false }: CarCardProps) {
         component="img"
         image={car.images[0] ?? '/placeholder.svg'}
         alt={car.title}
-        className="h-[210px]" // Tailwind: высота фото 210px
+        className="h-[210px]"
         sx={{
           width: '100%',
           objectFit: 'cover',
@@ -92,13 +112,14 @@ export default function CarCard({ car, isFavorite = false }: CarCardProps) {
             aria-label="Избранное"
             disableRipple
             sx={{
-              color: isFavorite ? '#ef4444' : '#c0c0c0',
+              color: liked ? '#ef4444' : '#c0c0c0',
               '&:hover': { backgroundColor: 'transparent' },
               padding: 0,
+              cursor: 'pointer',
             }}
-            disabled
+            onClick={toggleWishlist}
           >
-            <Heart fill={isFavorite ? '#ef4444' : 'none'} stroke={isFavorite ? '#ef4444' : '#c0c0c0'} />
+            <Heart fill={liked ? '#ef4444' : 'none'} stroke={liked ? '#ef4444' : '#c0c0c0'} />
           </IconButton>
         </div>
       </CardContent>

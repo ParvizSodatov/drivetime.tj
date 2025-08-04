@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Typography, Divider } from '@mui/material';
 import { Car, Phone, Mail, MapPin } from 'lucide-react';
+import Link from 'next/link';
+import  DirectionsCarIcon  from '@mui/icons-material/DirectionsCar';
 
 const Footer = () => {
   return (
@@ -31,12 +33,11 @@ const Footer = () => {
         >
           {/* Лого и контакты */}
           <Box sx={{ flex: 1, minWidth: 0 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <Car size={36} color="#6366F1" />
-              <Typography variant="h5" component="h1" sx={{ fontWeight: 800, color: 'white' }}>
-                CarMarket
-              </Typography>
-            </Box>
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition shrink-0">
+                      <DirectionsCarIcon sx={{ fontSize: '30px' }} />
+                      <span className="text-2xl font-bold text-white">DriveTime.tj</span>
+                    </Link>
+            
             <Typography variant="body2" sx={{ mb: 3, lineHeight: 1.6 }}>
               Ваш надежный партнер в мире автомобилей: покупка, аренда, обслуживание и запчасти.<br />
               Мы делаем процесс простым и удобным.
