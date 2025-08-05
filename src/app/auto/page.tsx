@@ -30,8 +30,8 @@ export default function About() {
   }, []);
 
   const filteredCars = useMemo(() => {
-    let minPrice = priceMin === "" ? null : priceMin;
-    let maxPrice = priceMax === "" ? null : priceMax;
+    const minPrice = priceMin === "" ? null : priceMin;
+    const maxPrice = priceMax === "" ? null : priceMax;
 
     let minMileage: number | null = null;
     let maxMileage: number | null = null;
