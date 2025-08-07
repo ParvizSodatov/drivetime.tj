@@ -44,7 +44,7 @@ export default function Header() {
           <li><Link href="/">Главная</Link></li>
           <li><Link href="/auto">Автомобили</Link></li>
           <li><Link href="/arenda">Аренда</Link></li>
-          <li><Link href="/auto-parts">Запчасти</Link></li>
+          <li><Link href="/auto-parts">Запчасти</Link></li> 
           <li><Link href="/service">СТО</Link></li>
         </ul>
 

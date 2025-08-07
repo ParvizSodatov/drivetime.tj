@@ -115,6 +115,7 @@ export default function Home() {
                   <Box
                     sx={{
                       width: "325px",
+                  
                       boxSizing: "border-box",
                       transition: "all 0.3s ease-in-out",
                       '&:hover': {
