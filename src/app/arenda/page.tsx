@@ -97,7 +97,7 @@ export default function About() {
           <InputLabel>Make</InputLabel>
           <Select value={make} onChange={(e) => setMake(e.target.value)}>
             <MenuItem value="">All</MenuItem>
-            <MenuItem value="Toyota">Toyota</MenuItem>
+            <MenuItem value="Toyota">Toyota1</MenuItem>
             <MenuItem value="Honda">Honda</MenuItem>
             <MenuItem value="Ford">Ford</MenuItem>
           </Select>
